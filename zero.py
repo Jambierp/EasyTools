@@ -10,7 +10,7 @@ parser.add_argument('--input_file', type=str, help='Path to the input audio file
 parser.add_argument('--audio_lang', type=str, help='Language of the input audio')
 parser.add_argument('--text', type=str, help='Text to be processed')
 parser.add_argument('--text_lang', type=str, help='Language to translate the text to')
-parser.add_argument('--whisper_model', type=str, help='Whisper Model to use', default="medium.en")
+parser.add_argument('--whisper_model', type=str, help='Whisper Model to use', default="large.en")
 args = parser.parse_args()
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
