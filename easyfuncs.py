@@ -1,5 +1,4 @@
 import os, subprocess
-import gradio as gr
 import shutil
 from mega import Mega
 
@@ -48,13 +47,13 @@ def download_from_url(url=None, model=None):
         try:
             url = model[f'{model}']
         except:
-            gr.Warning("Failed")
+            print("failed")
             return ''
     if model == '':
         try:
             model = url.split('/')[-1].split('?')[0]
         except:
-            gr.Warning('Please name the model')
+            print("Please name the model")
             return
     model = model.replace('.pth', '').replace('.index', '').replace('.zip', '')
     url = url.replace('/blob/main/', '/resolve/main/').strip()
@@ -98,12 +97,12 @@ def download_from_url(url=None, model=None):
                 os.makedirs(f'logs/{model}', exist_ok=True)
                 shutil.copy(f'downloads/{downloaded_file}', f'logs/{model}/added_{model}.index')
             else:
-                gr.Warning("Failed to download file")
+                print("Failed to download file")
                 return 'Failed'
 
-        gr.Info("Done")
+       print("Done")
     except Exception as e:
-        gr.Warning(f"There's been an error: {str(e)}")
+       print(f"There's been an error: {str(e)}")
     finally:
         shutil.rmtree("downloads", ignore_errors=True)
         shutil.rmtree("unzips", ignore_errors=True)
